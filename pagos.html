@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08050d">
+<title>CÓSMIKA LAB · Transferencia</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#08050d;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+display:flex;justify-content:center}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 10%,rgba(155,77,255,.25),transparent 32%),radial-gradient(circle at 90% 85%,rgba(80,140,255,.15),transparent 28%);pointer-events:none}
+.wrap{width:100%;max-width:520px;padding:34px 20px;position:relative}
+.logo{text-align:center;font-weight:850;letter-spacing:3px;font-size:24px}
+.sub{text-align:center;color:#aaa0ba;font-size:11px;letter-spacing:2px;margin-top:6px}
+.card{margin-top:28px;padding:28px 20px;border:1px solid rgba(183,122,255,.35);border-radius:28px;background:rgba(23,16,36,.9);text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.icon{font-size:42px}
+h1{font-size:29px;margin:10px 0 8px}
+.lead{color:#c9c1d3;line-height:1.5;margin:0 0 24px}
+.row{text-align:left;margin:15px 0}
+.label{color:#9589a1;font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.value{display:flex;gap:9px;align-items:center}
+.value span{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:13px;border-radius:12px;font-size:16px;word-break:break-all}
+button{border:0;border-radius:12px;padding:12px 13px;background:#8e45e8;color:#fff;font-weight:700;font-size:13px}
+.notice{margin-top:22px;padding:14px;border-radius:15px;background:rgba(255,255,255,.05);color:#c9c1d3;font-size:13px;line-height:1.5}
+.back{display:block;margin-top:22px;color:#fff;text-decoration:none;border:1px solid rgba(183,122,255,.3);padding:11px;border-radius:12px;font-size:13px}
+.footer{text-align:center;color:#766d82;font-size:10px;letter-spacing:1.5px;margin-top:24px}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="logo">CÓSMIKA LAB</div>
+<div class="sub">DISEÑO · TECNOLOGÍA · EXPERIENCIAS</div>
+<section class="card">
+<div class="icon">💳</div>
+<h1>Transferencia bancaria</h1>
+<p class="lead">Copia los datos y pégalos directamente en tu aplicación bancaria.</p>
+
+<div class="row"><div class="label">Banco</div><div class="value"><span>PLATA</span><button onclick="copyText('PLATA',this)">COPIAR</button></div></div>
+<div class="row"><div class="label">Titular</div><div class="value"><span>Erick Cesar González</span><button onclick="copyText('Erick Cesar González',this)">COPIAR</button></div></div>
+<div class="row"><div class="label">Cuenta / CLABE</div><div class="value"><span>646197405622140207</span><button onclick="copyText('646197405622140207',this)">COPIAR</button></div></div>
+
+<div class="notice">Después de realizar tu transferencia, envíanos tu comprobante por WhatsApp.</div>
+<a class="back" href="index.html">← Volver a CÓSMIKA LAB</a>
+</section>
+<div class="footer">CÓSMIKA LAB · ACERCA · CONECTA · DESCUBRE</div>
+</main>
+<script>
+function copyText(text,btn){
+ navigator.clipboard.writeText(text).then(()=>{
+   const old=btn.textContent; btn.textContent="¡COPIADO!";
+   setTimeout(()=>btn.textContent=old,1500);
+ }).catch(()=>{});
+}
+</script>
+</body>
+</html>
