@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050816">
+<meta name="description" content="Tarjeta digital de Erick Cesar Gonzalez - CÓSMIKA Lab">
+<title>Erick Cesar Gonzalez | CÓSMIKA Lab</title>
+
+<style>
+:root{
+  --bg:#030615;
+  --panel:rgba(8,16,42,.78);
+  --line:rgba(120,160,255,.35);
+  --text:#fff;
+  --muted:#b9c4dd;
+  --purple:#7b2cff;
+  --blue:#168cff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 18% 15%,rgba(90,25,190,.35),transparent 28%),
+    radial-gradient(circle at 82% 22%,rgba(0,120,255,.28),transparent 30%),
+    radial-gradient(circle at 50% 90%,rgba(40,70,180,.22),transparent 35%),
+    linear-gradient(180deg,#02030b 0%,#07102a 48%,#020511 100%);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;opacity:.65;
+  background-image:
+    radial-gradient(circle at 10% 20%,#fff 0 1px,transparent 1.5px),
+    radial-gradient(circle at 75% 12%,#fff 0 1px,transparent 1.5px),
+    radial-gradient(circle at 45% 34%,#fff 0 1px,transparent 1.5px),
+    radial-gradient(circle at 92% 58%,#fff 0 1px,transparent 1.5px),
+    radial-gradient(circle at 22% 73%,#fff 0 1px,transparent 1.5px);
+  background-size:180px 180px,240px 240px,310px 310px,260px 260px,330px 330px;
+}
+.container{width:min(100%,520px);margin:auto;padding:18px 14px 34px;position:relative}
+.card{
+  position:relative;overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:linear-gradient(180deg,rgba(6,11,29,.88),rgba(3,8,24,.94));
+  box-shadow:0 25px 90px rgba(0,0,0,.55),0 0 60px rgba(49,82,255,.12);
+  backdrop-filter:blur(16px);
+}
+.card:before{
+  content:"";position:absolute;inset:-2px;border-radius:30px;pointer-events:none;
+  background:linear-gradient(135deg,rgba(150,70,255,.6),transparent 35%,rgba(0,150,255,.35),transparent 70%);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;padding:1px;
+}
+.hero{text-align:center;padding:34px 22px 22px}
+.logo-wrap{
+  width:145px;height:145px;margin:0 auto 20px;border-radius:50%;
+  padding:5px;
+  background:linear-gradient(135deg,#a43dff,#5c2cff 48%,#00a6ff);
+  box-shadow:0 0 34px rgba(91,49,255,.55);
+}
+.logo{
+  width:100%;height:100%;object-fit:cover;border-radius:50%;
+  background:#000;
+}
+h1{font-size:30px;line-height:1.1;margin:0 0 7px;letter-spacing:-.6px}
+.role{
+  color:#c9d2e8;font-size:14px;letter-spacing:4px;text-transform:uppercase;
+}
+.tagline{
+  margin:21px 0 0;font-size:13px;letter-spacing:4px;color:#dbe5ff;
+}
+.subtag{margin:8px 0 0;color:#aebbd5;font-size:12px;letter-spacing:2.5px}
+
+.content{padding:0 18px 24px}
+.section-title{
+  display:flex;align-items:center;gap:12px;
+  color:#e9efff;font-size:12px;font-weight:700;letter-spacing:3px;
+  margin:20px 0 11px;
+}
+.section-title:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,var(--line),transparent)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{
+  min-height:58px;padding:12px 14px;
+  display:flex;align-items:center;gap:11px;
+  border-radius:17px;text-decoration:none;color:#fff;
+  border:1px solid rgba(111,154,255,.32);
+  background:linear-gradient(145deg,rgba(15,29,67,.9),rgba(6,15,37,.88));
+  box-shadow:inset 0 1px rgba(255,255,255,.05);
+  transition:.2s transform,.2s border-color,.2s box-shadow;
+}
+.btn:hover{transform:translateY(-2px);border-color:rgba(100,170,255,.7);box-shadow:0 8px 25px rgba(22,100,255,.16)}
+.icon{font-size:22px;width:30px;text-align:center}
+.btn strong{display:block;font-size:14px}
+.btn small{display:block;color:#9faccc;font-size:11px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.save{
+  width:100%;justify-content:center;border:0;margin:4px 0 18px;
+  min-height:64px;font-size:16px;font-weight:800;letter-spacing:2px;
+  background:linear-gradient(100deg,var(--purple),var(--blue));
+  box-shadow:0 12px 35px rgba(75,40,255,.35);
+}
+.save .icon{font-size:23px}
+.full{grid-column:1/-1}
+.footer{text-align:center;padding:23px 15px 28px;color:#b7c3dc}
+.footer .smallcaps{font-size:11px;letter-spacing:5px}
+.footer .services{margin-top:10px;font-size:11px;letter-spacing:1.8px;line-height:1.8}
+.motto{margin-top:16px;font-size:25px;font-style:italic;font-family:cursive}
+.toast{
+  position:fixed;left:50%;bottom:20px;transform:translate(-50%,120px);
+  background:#101a38;border:1px solid #5274d5;color:#fff;padding:12px 18px;
+  border-radius:14px;font-size:13px;box-shadow:0 12px 35px #0008;transition:.25s;z-index:5
+}
+.toast.show{transform:translate(-50%,0)}
+@media(max-width:390px){
+  h1{font-size:25px}.role{letter-spacing:2.5px}.grid{grid-template-columns:1fr}
+  .tagline{letter-spacing:2.5px}.subtag{letter-spacing:1.5px}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <main class="card">
+
+    <header class="hero">
+      <div class="logo-wrap">
+        <img class="logo" src="cosmika-logo.jpeg" alt="CÓSMIKA Lab">
+      </div>
+
+      <h1>Erick Cesar Gonzalez</h1>
+      <div class="role">CEO · CÓSMIKA Lab</div>
+
+      <div class="tagline">CREATIVIDAD + TECNOLOGÍA</div>
+      <div class="subtag">SOLUCIONES QUE CONECTAN NEGOCIOS CON PERSONAS</div>
+    </header>
+
+    <section class="content">
+
+      <button class="btn save" onclick="downloadVCF()" type="button">
+        <span class="icon">👤+</span>
+        <span>GUARDAR CONTACTO</span>
+      </button>
+
+      <div class="section-title">CONTACTO</div>
+      <div class="grid">
+        <a class="btn" href="https://wa.me/527711847870" target="_blank" rel="noopener">
+          <span class="icon">💬</span>
+          <span><strong>WhatsApp</strong><small>+52 771 184 7870</small></span>
+        </a>
+        <a class="btn" href="tel:+527711847870">
+          <span class="icon">📞</span>
+          <span><strong>Llamar</strong><small>+52 771 184 7870</small></span>
+        </a>
+        <a class="btn full" href="mailto:cosmikalab@gmail.com">
+          <span class="icon">✉️</span>
+          <span><strong>Correo electrónico</strong><small>cosmikalab@gmail.com</small></span>
+        </a>
+      </div>
+
+      <div class="section-title">REDES SOCIALES</div>
+      <div class="grid">
+        <a class="btn" href="https://instagram.com/cosmika_lab" target="_blank" rel="noopener">
+          <span class="icon">📸</span>
+          <span><strong>Instagram</strong><small>@cosmika_lab</small></span>
+        </a>
+        <a class="btn" href="https://facebook.com/cosmika_la" target="_blank" rel="noopener">
+          <span class="icon">📘</span>
+          <span><strong>Facebook</strong><small>@cosmika_la</small></span>
+        </a>
+      </div>
+
+      <div class="section-title">CÓSMIKA LAB</div>
+      <div class="grid">
+        <a class="btn" href="https://cosmikalab.github.io/wifi.html" target="_blank" rel="noopener">
+          <span class="icon">🌐</span>
+          <span><strong>Sitio web</strong><small>cosmikalab.github.io</small></span>
+        </a>
+        <a class="btn" href="https://maps.app.goo.gl/zjCo61TtJPQUWXeW6?g_st=ic" target="_blank" rel="noopener">
+          <span class="icon">📍</span>
+          <span><strong>Ubicación</strong><small>Ver en Google Maps</small></span>
+        </a>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      <div class="smallcaps">ESTUDIO CREATIVO</div>
+      <div class="services">DISEÑO · BRANDING · IMPRESIÓN · DTF · PUBLICIDAD · NFC</div>
+      <div class="motto">Ideas sin límites</div>
+    </footer>
+
+  </main>
+</div>
+
+<div id="toast" class="toast">Contacto preparado</div>
+
+<script>
+function downloadVCF(){
+  const vcard = [
+    "BEGIN:VCARD",
+    "VERSION:3.0",
+    "FN:Erick Cesar Gonzalez",
+    "N:Erick;Cesar;Gonzalez;;",
+    "ORG:CÓSMIKA Lab",
+    "TITLE:CEO",
+    "TEL;TYPE=CELL,VOICE:+527711847870",
+    "EMAIL;TYPE=INTERNET:cosmikalab@gmail.com",
+    "URL:https://cosmikalab.github.io/wifi.html",
+    "END:VCARD"
+  ].join("\r\n");
+
+  const blob = new Blob([vcard], {type:"text/vcard;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "Erick_Cesar_Gonzalez_COSMIKA.vcf";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+
+  const toast = document.getElementById("toast");
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2200);
+}
+</script>
+</body>
+</html>
