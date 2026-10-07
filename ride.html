@@ -1,1 +1,1244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>CÓSMIKA RIDE | Ropa para rodar. Ropa para vivir.</title>
+
+    <meta name="description"
+          content="CÓSMIKA RIDE. Ropa para rodar. Ropa para vivir. Colección de arte contemporáneo aplicado a prendas.">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --negro: #050505;
+            --negro2: #101010;
+            --blanco: #f5f5f5;
+            --gris: #a7a7a7;
+            --verde: #b7ff00;
+            --verde2: #8ed600;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--negro);
+            color: var(--blanco);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5,5,5,.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #222;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 16px 24px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .brand span {
+            background: var(--verde);
+            color: #000;
+            padding: 2px 8px;
+            margin-left: 4px;
+        }
+
+        .back {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            color: var(--verde);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 88vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+
+            max-width: 1400px;
+            margin: auto;
+            padding: 70px 40px;
+
+            gap: 40px;
+        }
+
+        .hero-text {
+            padding: 20px;
+        }
+
+        .eyebrow {
+            color: var(--verde);
+            font-weight: 800;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(55px, 8vw, 110px);
+            line-height: .85;
+            font-weight: 950;
+            letter-spacing: -6px;
+        }
+
+        h1 span {
+            color: var(--verde);
+        }
+
+        .hero-title {
+            margin-top: 30px;
+            font-size: clamp(28px, 4vw, 52px);
+            line-height: 1;
+            font-weight: 900;
+        }
+
+        .hero-title span {
+            color: var(--verde);
+        }
+
+        .hero-description {
+            max-width: 580px;
+            color: #bbb;
+            margin-top: 24px;
+            font-size: 18px;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 650px;
+            display: block;
+            object-fit: contain;
+            filter: drop-shadow(0 30px 50px rgba(0,0,0,.6));
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 35px;
+
+            background: var(--verde);
+            color: #000;
+
+            padding: 16px 28px;
+
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            transition: .2s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(183,255,0,.25);
+        }
+
+        /* =========================
+           CAMPAIGN
+        ========================= */
+
+        .campaign {
+            max-width: 1300px;
+            margin: auto;
+            padding: 40px 30px 100px;
+        }
+
+        .campaign img {
+            width: 100%;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .campaign-caption {
+            margin-top: 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .campaign-caption h2 {
+            font-size: clamp(28px, 4vw, 52px);
+            line-height: 1;
+        }
+
+        .campaign-caption span {
+            color: var(--verde);
+        }
+
+        .campaign-caption p {
+            max-width: 450px;
+            color: #999;
+        }
+
+        /* =========================
+           COLLECTION
+        ========================= */
+
+        .section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 100px 25px;
+        }
+
+        .section-title {
+            margin-bottom: 50px;
+        }
+
+        .section-title small {
+            color: var(--verde);
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(40px, 6vw, 70px);
+            line-height: .95;
+            margin-top: 10px;
+        }
+
+        .section-title p {
+            color: #999;
+            max-width: 650px;
+            margin-top: 18px;
+            font-size: 17px;
+        }
+
+        /* =========================
+           DESIGNS
+        ========================= */
+
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .design {
+            background: var(--negro2);
+            border: 1px solid #292929;
+            cursor: pointer;
+            transition: .25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .design:hover {
+            transform: translateY(-5px);
+            border-color: var(--verde);
+        }
+
+        .design.selected {
+            border: 3px solid var(--verde);
+        }
+
+        .design img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+        }
+
+        .design-info {
+            padding: 18px;
+        }
+
+        .design-info small {
+            color: var(--verde);
+            font-weight: 800;
+        }
+
+        .design-info h3 {
+            margin-top: 5px;
+            font-size: 20px;
+        }
+
+        .selected-mark {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+
+            background: var(--verde);
+            color: #000;
+
+            width: 32px;
+            height: 32px;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: 900;
+            border-radius: 50%;
+        }
+
+        .design.selected .selected-mark {
+            display: flex;
+        }
+
+        /* =========================
+           ORDER
+        ========================= */
+
+        .order-section {
+            background:
+                linear-gradient(rgba(0,0,0,.92), rgba(0,0,0,.95)),
+                url("images/cosmika-ride-campaign.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            padding: 100px 20px;
+        }
+
+        .order-box {
+            max-width: 950px;
+            margin: auto;
+
+            background: rgba(12,12,12,.95);
+            border: 1px solid #292929;
+
+            padding: 40px;
+        }
+
+        .order-box h2 {
+            font-size: clamp(35px, 5vw, 60px);
+            line-height: .9;
+            margin-bottom: 35px;
+        }
+
+        .order-box h2 span {
+            color: var(--verde);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: #bbb;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+
+            background: #050505;
+            color: white;
+
+            border: 1px solid #333;
+
+            padding: 14px;
+
+            font-family: inherit;
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--verde);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .radio-option {
+            position: relative;
+        }
+
+        .radio-option input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .radio-option label {
+            margin: 0;
+            padding: 14px;
+            display: block;
+            text-align: center;
+            border: 1px solid #333;
+            cursor: pointer;
+            background: #050505;
+        }
+
+        .radio-option input:checked + label {
+            border-color: var(--verde);
+            background: var(--verde);
+            color: #000;
+        }
+
+        .order-button {
+            width: 100%;
+            border: none;
+
+            margin-top: 30px;
+
+            padding: 18px;
+
+            background: var(--verde);
+            color: #000;
+
+            font-size: 17px;
+            font-weight: 900;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .order-button:hover {
+            background: white;
+        }
+
+        .note {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid #222;
+            padding: 40px 20px;
+            text-align: center;
+            color: #777;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        footer span {
+            color: var(--verde);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 60px 20px;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                max-width: 500px;
+            }
+
+            .campaign-caption {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .design-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .nav {
+                padding: 14px 18px;
+            }
+
+            .brand {
+                font-size: 18px;
+            }
+
+            .back {
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 45px;
+            }
+
+            h1 {
+                font-size: 65px;
+                letter-spacing: -4px;
+            }
+
+            .hero-title {
+                font-size: 30px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .design-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-box {
+                padding: 25px 18px;
+            }
+
+            .radio-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <nav class="nav">
+
+        <a href="index.html" class="brand">
+            CÓSMIKA <span>RIDE</span>
+        </a>
+
+        <a href="index.html" class="back">
+            ← Volver a CÓSMIKA Lab
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <div class="eyebrow">
+            CÓSMIKA LAB PRESENTA
+        </div>
+
+        <h1>
+            CÓSMIKA<br>
+            <span>RIDE</span>
+        </h1>
+
+        <div class="hero-title">
+            ROPA PARA RODAR.<br>
+            <span>ROPA PARA VIVIR.</span>
+        </div>
+
+        <p class="hero-description">
+            Una colección donde el arte contemporáneo,
+            la cultura MTB y el estilo urbano se encuentran.
+            Diseños para usar sobre la bici, fuera de ella
+            y en cualquier lugar donde quieras llevar tu actitud.
+        </p>
+
+        <a href="#coleccion" class="hero-button">
+            Ver colección
+        </a>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img
+            src="images/cosmika-ride-logo.png"
+            alt="CÓSMIKA RIDE">
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CAMPAIGN
+========================= -->
+
+<section class="campaign">
+
+    <img
+        src="images/cosmika-ride-campaign.jpg"
+        alt="CÓSMIKA RIDE - Colección">
+
+    <div class="campaign-caption">
+
+        <h2>
+            NO SOLO ES<br>
+            <span>PARA LA BICI.</span>
+        </h2>
+
+        <p>
+            CÓSMIKA RIDE nace de la mezcla entre movimiento,
+            arte, calle y aventura. Cada diseño es una pieza
+            pensada para vestirla a tu manera.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     COLLECTION
+========================= -->
+
+<section class="section" id="coleccion">
+
+    <div class="section-title">
+
+        <small>LA COLECCIÓN</small>
+
+        <h2>
+            ELIGE<br>
+            TU DISEÑO.
+        </h2>
+
+        <p>
+            Selecciona la pieza que quieres llevar en tu prenda.
+            Los diseños de CÓSMIKA RIDE están inspirados en
+            arte contemporáneo y cultura de montaña.
+        </p>
+
+    </div>
+
+
+    <div class="design-grid">
+
+
+        <div class="design"
+             data-design="Enduro Wave"
+             onclick="selectDesign(this)">
+
+            <div class="selected-mark">✓</div>
+
+            <img
+                src="images/diseno-enduro-wave.jpg"
+                alt="Diseño Enduro Wave">
+
+            <div class="design-info">
+
+                <small>RIDE 01</small>
+
+                <h3>
+                    Enduro Wave
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="design"
+             data-design="Surreal Ride"
+             onclick="selectDesign(this)">
+
+            <div class="selected-mark">✓</div>
+
+            <img
+                src="images/diseno-surreal-ride.jpg"
+                alt="Diseño Surreal Ride">
+
+            <div class="design-info">
+
+                <small>RIDE 02</small>
+
+                <h3>
+                    Surreal Ride
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="design"
+             data-design="CÓSMIKA Helmet"
+             onclick="selectDesign(this)">
+
+            <div class="selected-mark">✓</div>
+
+            <img
+                src="images/diseno-cosmika-helmet.jpg"
+                alt="Diseño CÓSMIKA Helmet">
+
+            <div class="design-info">
+
+                <small>RIDE 03</small>
+
+                <h3>
+                    CÓSMIKA Helmet
+                </h3>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ORDER
+========================= -->
+
+<section class="order-section">
+
+    <div class="order-box">
+
+        <h2>
+            ARMA TU<br>
+            <span>PRENDA.</span>
+        </h2>
+
+
+        <form id="orderForm">
+
+
+            <!-- DISEÑO -->
+
+            <div class="field full">
+
+                <label>
+                    Diseño seleccionado
+                </label>
+
+                <input
+                    type="text"
+                    id="selectedDesign"
+                    name="design"
+                    placeholder="Selecciona un diseño arriba"
+                    readonly
+                    required>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <!-- GENERO -->
+
+                <div class="field">
+
+                    <label>
+                        Prenda para
+                    </label>
+
+                    <select id="gender" required>
+
+                        <option value="">
+                            Selecciona
+                        </option>
+
+                        <option>
+                            Hombre
+                        </option>
+
+                        <option>
+                            Mujer
+                        </option>
+
+                        <option>
+                            Unisex
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MODELO -->
+
+                <div class="field">
+
+                    <label>
+                        Tipo de prenda
+                    </label>
+
+                    <select id="model" required>
+
+                        <option value="">
+                            Selecciona
+                        </option>
+
+                        <option>
+                            Playera de algodón
+                        </option>
+
+                        <option>
+                            Jersey deportivo
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- COLOR -->
+
+                <div class="field">
+
+                    <label>
+                        Color
+                    </label>
+
+                    <select id="color" required>
+
+                        <option value="">
+                            Selecciona
+                        </option>
+
+                        <option>
+                            Negro
+                        </option>
+
+                        <option>
+                            Blanco
+                        </option>
+
+                        <option>
+                            Gris
+                        </option>
+
+                        <option>
+                            Otro
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MANGA -->
+
+                <div class="field">
+
+                    <label>
+                        Manga
+                    </label>
+
+                    <select id="sleeve" required>
+
+                        <option value="">
+                            Selecciona
+                        </option>
+
+                        <option>
+                            Manga corta
+                        </option>
+
+                        <option>
+                            Manga larga
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TALLA -->
+
+                <div class="field">
+
+                    <label>
+                        Talla
+                    </label>
+
+                    <select id="size" required>
+
+                        <option value="">
+                            Selecciona
+                        </option>
+
+                        <option>
+                            CH
+                        </option>
+
+                        <option>
+                            M
+                        </option>
+
+                        <option>
+                            G
+                        </option>
+
+                        <option>
+                            XL
+                        </option>
+
+                        <option>
+                            XXL
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CANTIDAD -->
+
+                <div class="field">
+
+                    <label>
+                        Cantidad
+                    </label>
+
+                    <input
+                        type="number"
+                        id="quantity"
+                        min="1"
+                        value="1"
+                        required>
+
+                </div>
+
+
+                <!-- PERSONALIZACION -->
+
+                <div class="field full">
+
+                    <label>
+                        Personalización
+                    </label>
+
+                    <textarea
+                        id="custom"
+                        placeholder="Nombre, número, logo o cualquier detalle que quieras agregar..."></textarea>
+
+                </div>
+
+
+                <!-- ENTREGA -->
+
+                <div class="field full">
+
+                    <label>
+                        Forma de entrega
+                    </label>
+
+                    <select id="delivery" required>
+
+                        <option value="">
+                            Selecciona
+                        </option>
+
+                        <option>
+                            Recoger en CÓSMIKA Lab
+                        </option>
+
+                        <option>
+                            Envío
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- NOTAS -->
+
+                <div class="field full">
+
+                    <label>
+                        Comentarios adicionales
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        placeholder="Cuéntanos cualquier detalle adicional de tu pedido..."></textarea>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="order-button">
+
+                SOLICITAR MI PRENDA POR WHATSAPP
+
+            </button>
+
+
+            <p class="note">
+                Al enviar tu pedido te confirmaremos disponibilidad,
+                precio y tiempo de producción por WhatsApp.
+            </p>
+
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <strong>CÓSMIKA <span>RIDE</span></strong>
+
+    <br><br>
+
+    Ropa para rodar. Ropa para vivir.
+
+    <br><br>
+
+    © 2026 CÓSMIKA Lab
+
+</footer>
+
+
+<script>
+
+    let selectedDesign = "";
+
+
+    function selectDesign(element) {
+
+        document
+            .querySelectorAll(".design")
+            .forEach(card => {
+                card.classList.remove("selected");
+            });
+
+
+        element.classList.add("selected");
+
+
+        selectedDesign =
+            element.getAttribute("data-design");
+
+
+        document.getElementById("selectedDesign").value =
+            selectedDesign;
+
+
+        document
+            .getElementById("orderForm")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+    }
+
+
+    document
+        .getElementById("orderForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            if (!selectedDesign) {
+
+                alert(
+                    "Primero selecciona un diseño de la colección."
+                );
+
+                document
+                    .getElementById("coleccion")
+                    .scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                return;
+
+            }
+
+
+            const gender =
+                document.getElementById("gender").value;
+
+            const model =
+                document.getElementById("model").value;
+
+            const color =
+                document.getElementById("color").value;
+
+            const sleeve =
+                document.getElementById("sleeve").value;
+
+            const size =
+                document.getElementById("size").value;
+
+            const quantity =
+                document.getElementById("quantity").value;
+
+            const custom =
+                document.getElementById("custom").value ||
+                "Sin personalización";
+
+            const delivery =
+                document.getElementById("delivery").value;
+
+            const notes =
+                document.getElementById("notes").value ||
+                "Sin comentarios";
+
+
+            const message =
+
+`Hola CÓSMIKA Lab 👋
+
+Quiero solicitar una prenda de CÓSMIKA RIDE.
+
+🎨 DISEÑO:
+${selectedDesign}
+
+👕 PRENDA:
+${model}
+
+👤 PARA:
+${gender}
+
+🎨 COLOR:
+${color}
+
+👕 MANGA:
+${sleeve}
+
+📏 TALLA:
+${size}
+
+🔢 CANTIDAD:
+${quantity}
+
+✏️ PERSONALIZACIÓN:
+${custom}
+
+📦 ENTREGA:
+${delivery}
+
+📝 COMENTARIOS:
+${notes}
+
+Quedo atento para conocer disponibilidad, precio y tiempo de producción.`;
+
+
+
+            const phone =
+                "527711847870";
+
+
+            const url =
+                "https://wa.me/" +
+                phone +
+                "?text=" +
+                encodeURIComponent(message);
+
+
+            window.open(url, "_blank");
+
+        });
+
+</script>
+
+</body>
+</html>
