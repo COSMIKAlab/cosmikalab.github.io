@@ -1313,5 +1313,106 @@ Quedo atento para conocer disponibilidad, precio y tiempo de producción.`;
 
 </script>
 
+
+<style>
+.ride-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.96);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.ride-lightbox.open {
+  display: flex;
+}
+.ride-lightbox-content {
+  width: min(1100px, 96vw);
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.ride-lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+}
+.ride-lightbox button {
+  border: 0;
+  padding: 12px 22px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.ride-lightbox .choose {
+  background: #b7ff00;
+  color: #050505;
+}
+.ride-lightbox .close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: transparent;
+  color: white;
+  font-size: 30px;
+}
+</style>
+
+<div class="ride-lightbox" id="rideLightbox" aria-hidden="true">
+  <button class="close" type="button" onclick="closeRidePreview()" aria-label="Cerrar">×</button>
+  <div class="ride-lightbox-content">
+    <img id="ridePreviewImage" src="" alt="Vista ampliada del diseño">
+    <h2 id="ridePreviewTitle"></h2>
+    <button class="choose" type="button" onclick="chooseRideDesign()">ELEGIR ESTE DISEÑO</button>
+  </div>
+</div>
+
+<script>
+let ridePreviewCard = null;
+
+document.querySelectorAll(".design").forEach(card => {
+  card.addEventListener("dblclick", () => openRidePreview(card));
+});
+
+function openRidePreview(card) {
+  ridePreviewCard = card;
+  const image = card.querySelector("img");
+  const title = card.querySelector("h3");
+
+  document.getElementById("ridePreviewImage").src = image.src;
+  document.getElementById("ridePreviewTitle").textContent =
+    title ? title.textContent.trim() : card.dataset.design;
+
+  const lightbox = document.getElementById("rideLightbox");
+  lightbox.classList.add("open");
+  lightbox.setAttribute("aria-hidden", "false");
+}
+
+function closeRidePreview() {
+  const lightbox = document.getElementById("rideLightbox");
+  lightbox.classList.remove("open");
+  lightbox.setAttribute("aria-hidden", "true");
+}
+
+function chooseRideDesign() {
+  if (ridePreviewCard) {
+    selectDesign(ridePreviewCard);
+    closeRidePreview();
+  }
+}
+
+document.getElementById("rideLightbox").addEventListener("click", event => {
+  if (event.target.id === "rideLightbox") closeRidePreview();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeRidePreview();
+});
+</script>
+
 </body>
 </html>
