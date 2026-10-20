@@ -1166,149 +1166,236 @@
 
 <script>
 
-    let selectedDesign = "";
+   
+let selectedDesign = "";
+const cart = [];
 
+const BASE_PRICE = 240;
+const PERSONALIZATION_PRICE = 50;
+const LONG_SLEEVE_PRICE = 60;
+const WHATSAPP = "527711847870";
 
-    function selectDesign(element) {
+function selectDesign(element) {
+    document.querySelectorAll(".design").forEach(card => {
+        card.classList.remove("selected");
+    });
 
-        document
-            .querySelectorAll(".design")
-            .forEach(card => {
-                card.classList.remove("selected");
-            });
+    element.classList.add("selected");
+    selectedDesign = element.getAttribute("data-design");
+    document.getElementById("selectedDesign").value = selectedDesign;
 
+    document.getElementById("orderForm").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
 
-        element.classList.add("selected");
+function money(amount) {
+    return "$" + amount.toLocaleString("es-MX") + " MXN";
+}
 
+function unitPrice(item) {
+    return BASE_PRICE
+        + (item.personalized ? PERSONALIZATION_PRICE : 0)
+        + (item.sleeve === "Manga larga" ? LONG_SLEEVE_PRICE : 0);
+}
 
-        selectedDesign =
-            element.getAttribute("data-design");
+function safeText(value) {
+    return String(value).replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    }[character]));
+}
 
+/* Crear el carrito sin modificar el HTML existente */
+const orderForm = document.getElementById("orderForm");
 
-        document.getElementById("selectedDesign").value =
-            selectedDesign;
+orderForm.querySelector('button[type="submit"]').textContent =
+    "AGREGAR PRENDA AL PEDIDO";
 
+orderForm.insertAdjacentHTML("afterend", `
+    <div id="rideCart" class="cart-box"
+         style="margin-top:25px;padding:20px;border:1px solid #444;border-radius:12px;background:#101010;">
+        <h3>RESUMEN DE TU PEDIDO</h3>
+        <div id="rideCartItems">
+            <p class="note">Todavía no agregas prendas.</p>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:18px 0;font-size:1.1rem;">
+            <strong>TOTAL:</strong>
+            <strong id="rideCartTotal">$0 MXN</strong>
+        </div>
+        <button type="button" id="sendRideOrder" class="order-button">
+            ENVIAR PEDIDO POR WHATSAPP
+        </button>
+        <p class="note">
+            Playera base $240 · Personalización +$50 · Manga larga +$60.
+            Los precios son por prenda.
+        </p>
+    </div>
+`);
 
-        document
-            .getElementById("orderForm")
-            .scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+function renderCart() {
+    const container = document.getElementById("rideCartItems");
+    const totalElement = document.getElementById("rideCartTotal");
 
+    if (cart.length === 0) {
+        container.innerHTML =
+            '<p class="note">Todavía no agregas prendas.</p>';
+        totalElement.textContent = money(0);
+        return;
     }
 
+    container.innerHTML = cart.map((item, index) => {
+        const price = unitPrice(item);
+        const subtotal = price * item.quantity;
 
-    document
-        .getElementById("orderForm")
-        .addEventListener("submit", function(event) {
+        return `
+            <div style="padding:15px 0;border-bottom:1px solid #444;">
+                <strong>${index + 1}. ${safeText(item.design)}</strong>
+                <p style="line-height:1.6;color:#ccc;">
+                    ${safeText(item.model)} · ${safeText(item.gender)}<br>
+                    Color: ${safeText(item.color)}<br>
+                    Manga: ${safeText(item.sleeve)} · Talla: ${safeText(item.size)}<br>
+                    Cantidad: ${item.quantity}<br>
+                    ${item.personalized
+                        ? "Personalización: " + safeText(item.custom)
+                        : "Sin personalización"}<br>
+                    Precio unitario: ${money(price)}<br>
+                    <strong>Subtotal: ${money(subtotal)}</strong>
+                </p>
+                <button type="button" data-remove="${index}"
+                    style="padding:8px 12px;cursor:pointer;">
+                    Eliminar prenda
+                </button>
+            </div>
+        `;
+    }).join("");
 
-            event.preventDefault();
+    const total = cart.reduce(
+        (sum, item) => sum + unitPrice(item) * item.quantity,
+        0
+    );
 
+    totalElement.textContent = money(total);
 
-            if (!selectedDesign) {
-
-                alert(
-                    "Primero selecciona un diseño de la colección."
-                );
-
-                document
-                    .getElementById("coleccion")
-                    .scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                return;
-
-            }
-
-
-            const gender =
-                document.getElementById("gender").value;
-
-            const model =
-                document.getElementById("model").value;
-
-            const color =
-                document.getElementById("color").value;
-
-            const sleeve =
-                document.getElementById("sleeve").value;
-
-            const size =
-                document.getElementById("size").value;
-
-            const quantity =
-                document.getElementById("quantity").value;
-
-            const custom =
-                document.getElementById("custom").value ||
-                "Sin personalización";
-
-            const delivery =
-                document.getElementById("delivery").value;
-
-            const notes =
-                document.getElementById("notes").value ||
-                "Sin comentarios";
-
-
-            const message =
-
-`Hola CÓSMIKA Lab 👋
-
-Quiero solicitar una prenda de CÓSMIKA RIDE.
-
-🎨 DISEÑO:
-${selectedDesign}
-
-👕 PRENDA:
-${model}
-
-👤 PARA:
-${gender}
-
-🎨 COLOR:
-${color}
-
-👕 MANGA:
-${sleeve}
-
-📏 TALLA:
-${size}
-
-🔢 CANTIDAD:
-${quantity}
-
-✏️ PERSONALIZACIÓN:
-${custom}
-
-📦 ENTREGA:
-${delivery}
-
-📝 COMENTARIOS:
-${notes}
-
-Quedo atento para conocer disponibilidad, precio y tiempo de producción.`;
-
-
-
-            const phone =
-                "527711847870";
-
-
-            const url =
-                "https://wa.me/" +
-                phone +
-                "?text=" +
-                encodeURIComponent(message);
-
-
-            window.open(url, "_blank");
-
+    container.querySelectorAll("[data-remove]").forEach(button => {
+        button.addEventListener("click", () => {
+            cart.splice(Number(button.dataset.remove), 1);
+            renderCart();
         });
+    });
+}
 
+/* Agregar cada prenda como un artículo independiente */
+orderForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!selectedDesign) {
+        alert("Primero selecciona un diseño de la colección.");
+        document.getElementById("coleccion").scrollIntoView({
+            behavior: "smooth"
+        });
+        return;
+    }
+
+    if (!orderForm.reportValidity()) return;
+
+    const personalized =
+        document.getElementById("addPersonalization").checked;
+    const customText =
+        document.getElementById("custom").value.trim();
+
+    if (personalized && !customText) {
+        alert("Describe la personalización que quieres agregar.");
+        document.getElementById("custom").focus();
+        return;
+    }
+
+    cart.push({
+        design: selectedDesign,
+        gender: document.getElementById("gender").value,
+        model: document.getElementById("model").value,
+        color: document.getElementById("color").value,
+        sleeve: document.getElementById("sleeve").value,
+        size: document.getElementById("size").value,
+        quantity: Math.max(
+            1,
+            parseInt(document.getElementById("quantity").value, 10) || 1
+        ),
+        personalized: personalized,
+        custom: personalized ? customText : "Sin personalización"
+    });
+
+    renderCart();
+
+    document.getElementById("rideCart").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    alert("¡Prenda agregada! Puedes elegir otro diseño para agregar más.");
+});
+
+/* Enviar el pedido completo a WhatsApp */
+document.getElementById("sendRideOrder").addEventListener("click", function() {
+    if (cart.length === 0) {
+        alert("Agrega al menos una prenda antes de enviar el pedido.");
+        return;
+    }
+
+    const delivery = document.getElementById("delivery").value;
+
+    if (!delivery) {
+        alert("Selecciona la forma de entrega.");
+        document.getElementById("delivery").focus();
+        return;
+    }
+
+    const notes =
+        document.getElementById("notes").value.trim() || "Sin comentarios";
+
+    const total = cart.reduce(
+        (sum, item) => sum + unitPrice(item) * item.quantity,
+        0
+    );
+
+    const details = cart.map((item, index) => `
+${index + 1}. ${item.design}
+Prenda: ${item.model}
+Para: ${item.gender}
+Color: ${item.color}
+Manga: ${item.sleeve}
+Talla: ${item.size}
+Cantidad: ${item.quantity}
+Personalización: ${item.personalized ? item.custom : "No"}
+Precio unitario: ${money(unitPrice(item))}
+Subtotal: ${money(unitPrice(item) * item.quantity)}
+    `.trim()).join("\n\n");
+
+    const message = `Hola CÓSMIKA Lab 👋
+
+Quiero solicitar este pedido de CÓSMIKA RIDE:
+
+${details}
+
+TOTAL ESTIMADO: ${money(total)}
+
+Forma de entrega: ${delivery}
+
+Comentarios: ${notes}
+
+Quedo atento para confirmar disponibilidad y tiempo de producción.`;
+
+    const url = "https://wa.me/" + WHATSAPP +
+        "?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+});
 </script>
+
 
 
 <style>
